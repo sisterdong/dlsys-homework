@@ -98,9 +98,9 @@ def nn_epoch(X, y, W1, W2, lr = 0.1, batch=100):
         by_one_hot[range(batch), by] = 1
         loss = softmax_loss(z, ndl.Tensor(by_one_hot))
         loss.backward()
-        new_W1 = W1.data - lr * W1.grad.data
-        new_W2 = W2.data - lr * W2.grad.data
-        W1, W2 = new_W1, new_W2
+        new_W1 = W1 - lr * W1.grad
+        new_W2 = W2 - lr * W2.grad
+        W1, W2 = new_W1.data, new_W2.data
     return W1, W2
 
 ### CODE BELOW IS FOR ILLUSTRATION, YOU DO NOT NEED TO EDIT
