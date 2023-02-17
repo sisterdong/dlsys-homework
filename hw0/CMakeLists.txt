@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.4)
 project(hw0)
-set(CMAKE_CXX_FLAGS "-O3 -Wall -shared -std=c++11 -fPIC -undefined dynamic_lookup $$(python3 -m pybind11 --includes)")
 
-add_subdirectory(src)
-pybind11_add_module(hw0 src/simple_ml_ext.cpp)
+find_package(pybind11 CONFIG REQUIRED)
+pybind11_add_module(simple_ml_ext src/simple_ml_ext.cpp)
+set_target_properties(simple_ml_ext PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/src")
